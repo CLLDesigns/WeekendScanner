@@ -45,7 +45,7 @@ function buildFlightDetailsObject(carriers, leg) {
   var departTimeStringSplit = leg.Departure.split("T");
   var arrivalTimeStringSplit = leg.Arrival.split("T");
   return {
-    carrier: getCarrierName(carriers, leg.Carriers[0]),
+    carrier: getCarrierDetails(carriers, leg.Carriers[0]),
     departureDate: departTimeStringSplit[0],
     departureTime: departTimeStringSplit[1],
     arrivalDate: arrivalTimeStringSplit[0],
@@ -53,7 +53,10 @@ function buildFlightDetailsObject(carriers, leg) {
   }
 }
 
-function getCarrierName(carrierList, carrierID) {
+function getCarrierDetails(carrierList, carrierID) {
   var filteredCarrierList = carrierList.filter(carrierObj => { return carrierObj.Id === carrierID });
-  return filteredCarrierList[0].Name;
+  return {
+    name: filteredCarrierList[0].Name,
+    imageUrl: filteredCarrierList[0].ImageUrl
+  }
 }
