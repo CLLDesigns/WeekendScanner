@@ -1,6 +1,7 @@
 // Trip Object
 // {
 //   price: price in aud,
+//   bookingLink: url to book this trip,
 //   departureFlight: {
 //     carrier: airline,
 //     departureDate: date american format,
@@ -21,6 +22,7 @@ exports.buildTripObjects = function(itineraries, carriers, legs) {
   itineraries.forEach(itinerary => {
     var trip = {
       price: itinerary.PricingOptions[0].Price,
+      bookingLink: itinerary.PricingOptions[0].DeeplinkUrl,
       departureFlight: null,
       returnFlight: null
     };
